@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>사장님 주문 관리</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="admin">
+    <header class="admin-header">
+      <div>
+        <p>사장님 사이트</p>
+        <h1>주문 관리</h1>
+      </div>
+      <div class="admin-header-actions">
+        <button id="seedOrder" class="button secondary" type="button">테스트 주문</button>
+        <button id="toggleSound" class="button ghost" type="button" aria-pressed="false">알림 켜기</button>
+      </div>
+    </header>
+
+    <main class="admin-shell">
+      <section class="metrics" aria-label="주문 현황">
+        <div>
+          <span id="pendingCount">0</span>
+          <small>대기</small>
+        </div>
+        <div>
+          <span id="cookingCount">0</span>
+          <small>조리중</small>
+        </div>
+        <div>
+          <span id="servedCount">0</span>
+          <small>완료</small>
+        </div>
+        <div>
+          <span id="todaySales">0원</span>
+          <small>주문액</small>
+        </div>
+      </section>
+
+      <section aria-labelledby="ordersTitle">
+        <div class="section-heading">
+          <p>실시간 주문 확인</p>
+          <h2 id="ordersTitle">주문 보드</h2>
+        </div>
+        <div id="orderBoard" class="kanban" aria-live="polite"></div>
+      </section>
+
+      <section aria-labelledby="menuManageTitle">
+        <div class="section-heading">
+          <p>메뉴 설정</p>
+          <h2 id="menuManageTitle">이미지, 가격, 품절 관리</h2>
+        </div>
+        <div id="menuManager" class="menu-manager"></div>
+      </section>
+    </main>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>
