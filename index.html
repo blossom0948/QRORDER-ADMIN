@@ -51,6 +51,41 @@
           <p>메뉴 설정</p>
           <h2 id="menuManageTitle">이미지, 가격, 품절 관리</h2>
         </div>
+        <form id="addMenuForm" class="menu-add-form">
+          <div class="form-title">
+            <strong>메뉴 추가</strong>
+            <span>이름, 카테고리, 가격만 입력하면 바로 손님 화면에 표시됩니다.</span>
+          </div>
+          <label>
+            메뉴명
+            <input name="name" required placeholder="예: 물냉면" />
+          </label>
+          <label>
+            카테고리
+            <select name="category">
+              <option value="main">메인</option>
+              <option value="side">사이드</option>
+              <option value="drink">음료</option>
+            </select>
+          </label>
+          <label>
+            가격
+            <input name="price" type="number" min="0" step="500" required placeholder="9000" />
+          </label>
+          <label>
+            설명
+            <input name="desc" placeholder="손님 화면에 보일 짧은 설명" />
+          </label>
+          <label>
+            배지
+            <input name="badge" placeholder="추천, 인기 등" />
+          </label>
+          <label>
+            사진 파일
+            <input name="imageFile" type="file" accept="image/*" />
+          </label>
+          <button class="button primary" type="submit">메뉴 추가</button>
+        </form>
         <div id="menuManager" class="menu-manager"></div>
       </section>
     </main>
