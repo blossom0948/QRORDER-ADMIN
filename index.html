@@ -40,7 +40,7 @@
           <div>
             <p>Firebase 운영</p>
             <h2 id="firebaseStoreTitle">로그인 후 매장을 연결하세요</h2>
-            <small id="firebaseStatus">사장님 계정으로 로그인하면 매장, 메뉴, QR이 자동 생성됩니다.</small>
+            <small id="firebaseStatus">Google 계정으로 시작하면 매장, 메뉴, QR이 자동 생성됩니다.</small>
           </div>
           <div id="adminSession" class="admin-session" hidden>
             <span id="adminUserLabel"></span>
@@ -48,17 +48,25 @@
           </div>
         </div>
 
-        <form id="adminLoginForm" class="admin-login-form">
-          <label>
-            이메일
-            <input name="email" type="email" autocomplete="email" required placeholder="owner@example.com" />
-          </label>
-          <label>
-            비밀번호
-            <input name="password" type="password" autocomplete="current-password" required placeholder="Firebase Auth 비밀번호" />
-          </label>
-          <button class="button primary" type="submit">로그인</button>
-        </form>
+        <div id="quickStartBox" class="quick-start-box">
+          <button id="googleLogin" class="button primary google-login" type="button">Google로 시작하기</button>
+          <small>처음 로그인한 계정이 이 매장의 사장님 계정이 됩니다. Firebase에서 이메일/비밀번호를 직접 만들 필요가 없습니다.</small>
+        </div>
+
+        <details id="emailLoginDetails" class="email-login-details">
+          <summary>이메일 로그인(테스트용)</summary>
+          <form id="adminLoginForm" class="admin-login-form">
+            <label>
+              이메일
+              <input name="email" type="email" autocomplete="email" placeholder="owner@example.com" />
+            </label>
+            <label>
+              비밀번호
+              <input name="password" type="password" autocomplete="current-password" placeholder="Firebase Auth 비밀번호" />
+            </label>
+            <button class="button secondary" type="submit">이메일로 로그인</button>
+          </form>
+        </details>
 
         <form id="createStoreForm" class="store-create-form" hidden>
           <label>

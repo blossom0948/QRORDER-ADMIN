@@ -6,11 +6,6 @@ service cloud.firestore {
       return request.auth != null;
     }
 
-    function isAdminUser() {
-      return signedIn()
-        && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
-    }
-
     function storePath(storeId) {
       return /databases/$(database)/documents/stores/$(storeId);
     }
@@ -34,17 +29,14 @@ service cloud.firestore {
         && get(qrPath(storeId, token)).data.expiresAt > request.time;
     }
 
-    match /admins/{uid} {
-      allow get: if signedIn() && request.auth.uid == uid;
-      allow list, create, update, delete: if false;
-    }
-
     match /stores/{storeId} {
       allow get: if true;
       allow list: if signedIn();
-      allow create: if isAdminUser()
+      allow create: if signedIn()
         && request.resource.data.ownerUid == request.auth.uid;
-      allow update, delete: if ownsStore(storeId);
+      allow update: if ownsStore(storeId)
+        && request.resource.data.ownerUid == resource.data.ownerUid;
+      allow delete: if ownsStore(storeId);
 
       match /menus/{menuId} {
         allow read: if true;
