@@ -73,8 +73,17 @@
         <div id="storeTools" class="store-tools" hidden>
           <div>
             <strong>테이블 QR 링크</strong>
-            <span>각 링크를 QR로 만들면 손님 화면이 해당 매장/테이블에 연결됩니다.</span>
+            <span>QR 자동 생성 버튼을 누르면 테이블별 손님 주문 QR이 만들어집니다.</span>
           </div>
+          <form id="qrGeneratorForm" class="qr-generator-form">
+            <label>
+              테이블 수
+              <input name="qrTableCount" type="number" min="1" max="60" value="10" />
+            </label>
+            <button class="button primary" type="submit">QR 자동 생성</button>
+            <button id="printAllQr" class="button secondary" type="button">전체 QR 인쇄</button>
+          </form>
+          <small id="qrGeneratorStatus" class="qr-generator-status">매장 테이블 수만큼 QR을 생성하고, 기존 QR은 유지합니다.</small>
           <div id="qrLinks" class="qr-links"></div>
         </div>
       </section>
