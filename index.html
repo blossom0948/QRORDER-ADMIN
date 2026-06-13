@@ -83,11 +83,14 @@
         <div id="orderBoard" class="kanban" aria-live="polite"></div>
       </section>
 
-      <section aria-labelledby="menuManageTitle">
-        <div class="section-heading">
-          <p>메뉴 설정</p>
-          <h2 id="menuManageTitle">메뉴판 관리</h2>
-        </div>
+      <details class="menu-manage-panel">
+        <summary>
+          <div class="section-heading">
+            <p>메뉴 설정</p>
+            <h2 id="menuManageTitle">메뉴판 관리</h2>
+          </div>
+          <span>열기</span>
+        </summary>
         <form id="addMenuForm" class="menu-add-form">
           <div class="form-title">
             <strong>메뉴 추가</strong>
@@ -124,7 +127,7 @@
           <button class="button primary" type="submit">메뉴 추가</button>
         </form>
         <div id="menuManager" class="menu-manager"></div>
-      </section>
+      </details>
     </main>
 
     <script src="app.js" defer></script>
