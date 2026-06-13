@@ -17,6 +17,8 @@ https://blossom0948.github.io/QRORDER-ADMIN/
 - 실시간, QR 보안, 메뉴 사진, 결제 연동 준비 상태 표시
 - Firebase/Supabase, PG, QR 토큰 운영 연동 안내 패널
 - 무료 기준 운영 연동 가이드 `FREE_SETUP_GUIDE.md`
+- Firebase Auth 로그인, 매장 생성, 기본 메뉴/테이블 QR 자동 생성
+- Firestore 보안 규칙 `firestore.rules`
 - 주문 요청사항 확인
 - 음식 주문과 직원 호출 요청 구분 표시
 - 메뉴 이미지 URL 설정
