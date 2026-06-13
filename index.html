@@ -88,101 +88,11 @@
         </div>
       </section>
 
-      <section class="metrics" aria-label="주문 현황">
-        <div>
-          <span id="pendingCount">0</span>
-          <small>대기</small>
-        </div>
-        <div>
-          <span id="cookingCount">0</span>
-          <small>조리중</small>
-        </div>
-        <div>
-          <span id="servedCount">0</span>
-          <small>완료</small>
-        </div>
-        <div>
-          <span id="todaySales">0원</span>
-          <small>주문액</small>
-        </div>
-      </section>
-
-      <section class="admin-command-center" aria-label="운영 요약">
-        <div id="alertPanel" class="alert-panel">
-          <div>
-            <p>알림 센터</p>
-            <h2 id="alertTitle">새 주문 대기 중</h2>
-          </div>
-          <span id="soundState" class="sound-state">알림 꺼짐</span>
-          <p id="alertMessage">영업 시작 전에 딩동 알림을 켜두면 새 주문과 직원 호출을 바로 들을 수 있습니다.</p>
-        </div>
-        <div class="ops-grid">
-          <div>
-            <span id="activeTableCount">0</span>
-            <small>진행 테이블</small>
-          </div>
-          <div>
-            <span id="serviceCount">0</span>
-            <small>직원 호출 대기</small>
-          </div>
-          <div>
-            <span id="soldOutCount">0</span>
-            <small>품절 메뉴</small>
-          </div>
-          <div>
-            <span id="oldestWait">0분</span>
-            <small>가장 오래 대기</small>
-          </div>
-        </div>
-      </section>
-
-      <section class="system-readiness" aria-label="서비스 준비 상태">
-        <div>
-          <span>실시간</span>
-          <strong id="realtimeStatus">확인 중</strong>
-        </div>
-        <div>
-          <span>QR 보안</span>
-          <strong id="securityStatus">확인 중</strong>
-        </div>
-        <div>
-          <span>메뉴 사진</span>
-          <strong id="imageStatus">0/0개</strong>
-        </div>
-        <div>
-          <span>결제</span>
-          <strong id="paymentStatus">확인 중</strong>
-        </div>
-        <small id="systemSyncTime">동기화 대기 중</small>
-      </section>
-
-      <details class="integration-panel">
-        <summary>
-          <strong>운영 연동 준비</strong>
-          <span>Firebase/Supabase, PG, QR 토큰</span>
-        </summary>
-        <div class="integration-grid">
-          <div>
-            <b>Firebase DB</b>
-            <p>사장님 로그인 후 매장을 만들면 메뉴, 주문, QR이 Firestore에 저장되고 실시간으로 동기화됩니다.</p>
-          </div>
-          <div>
-            <b>QR 토큰</b>
-            <p>매장 생성 시 테이블별 랜덤 토큰이 자동 생성됩니다. 손님 URL은 <code>?store=...&table=05&token=...</code> 형태입니다.</p>
-          </div>
-          <div>
-            <b>결제/환불</b>
-            <p>선불/후불 모드를 주문 데이터에 남깁니다. 실제 PG 키 연결 전에는 결제 승인 없이 주문 접수 데모로 동작합니다.</p>
-          </div>
-        </div>
-        <a class="guide-link" href="FREE_SETUP_GUIDE.md" target="_blank" rel="noreferrer">무료 연동 가이드 열기</a>
-      </details>
-
       <details class="menu-manage-panel">
         <summary>
           <div class="section-heading">
-            <p>메뉴 설정</p>
-            <h2 id="menuManageTitle">메뉴판 관리</h2>
+            <p>가격·품절·사진</p>
+            <h2 id="menuManageTitle">메뉴 수정</h2>
           </div>
           <span>열기</span>
         </summary>
