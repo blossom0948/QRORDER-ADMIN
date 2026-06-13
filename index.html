@@ -7,7 +7,17 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body data-page="admin">
-    <header class="admin-header">
+    <section id="loginGate" class="admin-login-gate" aria-labelledby="loginGateTitle">
+      <div class="login-card">
+        <p>QRORDER Admin</p>
+        <h1 id="loginGateTitle">매장 운영을 시작하세요</h1>
+        <span>Google 계정으로 로그인하면 매장 생성, 메뉴 관리, 주문 확인 화면이 열립니다.</span>
+        <button id="googleLogin" class="button primary google-login" type="button">Google로 시작하기</button>
+        <small id="loginStatus">Firebase Authentication에서 Google 로그인을 켠 뒤 사용할 수 있습니다.</small>
+      </div>
+    </section>
+
+    <header id="adminHeader" class="admin-header" hidden>
       <div>
         <p>사장님 사이트</p>
         <h1>운영 대시보드</h1>
@@ -18,7 +28,7 @@
       </div>
     </header>
 
-    <main class="admin-shell">
+    <main id="adminDashboard" class="admin-shell" hidden>
       <section class="order-board-section" aria-labelledby="ordersTitle">
         <div class="section-heading">
           <p>실시간 주문 확인</p>
@@ -38,35 +48,15 @@
       <section class="firebase-admin-panel" aria-label="Firebase 매장 연결">
         <div class="firebase-panel-head">
           <div>
-            <p>Firebase 운영</p>
-            <h2 id="firebaseStoreTitle">로그인 후 매장을 연결하세요</h2>
-            <small id="firebaseStatus">Google 계정으로 시작하면 매장, 메뉴, QR이 자동 생성됩니다.</small>
+            <p>매장 연결</p>
+            <h2 id="firebaseStoreTitle">매장을 만들어 주세요</h2>
+            <small id="firebaseStatus">매장을 만들면 기본 메뉴와 테이블 QR이 자동 생성됩니다.</small>
           </div>
           <div id="adminSession" class="admin-session" hidden>
             <span id="adminUserLabel"></span>
             <button id="adminLogout" class="button ghost" type="button">로그아웃</button>
           </div>
         </div>
-
-        <div id="quickStartBox" class="quick-start-box">
-          <button id="googleLogin" class="button primary google-login" type="button">Google로 시작하기</button>
-          <small>처음 로그인한 계정이 이 매장의 사장님 계정이 됩니다. Firebase에서 이메일/비밀번호를 직접 만들 필요가 없습니다.</small>
-        </div>
-
-        <details id="emailLoginDetails" class="email-login-details">
-          <summary>이메일 로그인(테스트용)</summary>
-          <form id="adminLoginForm" class="admin-login-form">
-            <label>
-              이메일
-              <input name="email" type="email" autocomplete="email" placeholder="owner@example.com" />
-            </label>
-            <label>
-              비밀번호
-              <input name="password" type="password" autocomplete="current-password" placeholder="Firebase Auth 비밀번호" />
-            </label>
-            <button class="button secondary" type="submit">이메일로 로그인</button>
-          </form>
-        </details>
 
         <form id="createStoreForm" class="store-create-form" hidden>
           <label>

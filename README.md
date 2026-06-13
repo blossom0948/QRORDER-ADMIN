@@ -6,6 +6,10 @@
 
 https://blossom0948.github.io/QRORDER-ADMIN/
 
+커스텀 도메인 연결 예정:
+
+https://admin.blossom0948.cloud/
+
 ## 주요 기능
 
 - Google 로그인 기반 사장님 온보딩
@@ -21,3 +25,5 @@ https://blossom0948.github.io/QRORDER-ADMIN/
 초기 설정은 [FREE_SETUP_GUIDE.md](FREE_SETUP_GUIDE.md)를 따릅니다.
 
 사장님 계정이나 `admins/{UID}` 문서는 수동으로 만들지 않습니다. Firebase에서 Google 로그인을 켠 뒤, 사이트에서 `Google로 시작하기`를 누르면 됩니다.
+
+도메인 연결 시 Firebase Authentication > Settings > Authorized domains에 `admin.blossom0948.cloud`를 추가해야 Google 로그인이 동작합니다.
