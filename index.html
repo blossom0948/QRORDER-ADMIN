@@ -19,6 +19,22 @@
     </header>
 
     <main class="admin-shell">
+      <section class="order-board-section" aria-labelledby="ordersTitle">
+        <div class="section-heading">
+          <p>실시간 주문 확인</p>
+          <h2 id="ordersTitle">주문 보드</h2>
+        </div>
+        <div class="order-toolbar">
+          <div class="filter-chips" role="tablist" aria-label="주문 필터">
+            <button class="active" type="button" data-order-filter="all">전체</button>
+            <button type="button" data-order-filter="food">음식 주문</button>
+            <button type="button" data-order-filter="service">직원 호출</button>
+          </div>
+          <span id="boardHint">대기 주문이 들어오면 딩동 알림과 함께 이 보드에 표시됩니다.</span>
+        </div>
+        <div id="orderBoard" class="kanban" aria-live="polite"></div>
+      </section>
+
       <section class="metrics" aria-label="주문 현황">
         <div>
           <span id="pendingCount">0</span>
@@ -106,23 +122,8 @@
             <p>선불/후불 모드를 주문 데이터에 남깁니다. 실제 PG 키 연결 전에는 결제 승인 없이 주문 접수 데모로 동작합니다.</p>
           </div>
         </div>
+        <a class="guide-link" href="FREE_SETUP_GUIDE.md" target="_blank" rel="noreferrer">무료 연동 가이드 열기</a>
       </details>
-
-      <section aria-labelledby="ordersTitle">
-        <div class="section-heading">
-          <p>실시간 주문 확인</p>
-          <h2 id="ordersTitle">주문 보드</h2>
-        </div>
-        <div class="order-toolbar">
-          <div class="filter-chips" role="tablist" aria-label="주문 필터">
-            <button class="active" type="button" data-order-filter="all">전체</button>
-            <button type="button" data-order-filter="food">음식 주문</button>
-            <button type="button" data-order-filter="service">직원 호출</button>
-          </div>
-          <span id="boardHint">대기 주문이 들어오면 딩동 알림과 함께 이 보드에 표시됩니다.</span>
-        </div>
-        <div id="orderBoard" class="kanban" aria-live="polite"></div>
-      </section>
 
       <details class="menu-manage-panel">
         <summary>
