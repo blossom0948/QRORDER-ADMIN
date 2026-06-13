@@ -20,6 +20,12 @@ service cloud.firestore {
         && get(storePath(storeId)).data.ownerUid == request.auth.uid;
     }
 
+    function ownsStoreAfter(storeId) {
+      return signedIn()
+        && existsAfter(storePath(storeId))
+        && getAfter(storePath(storeId)).data.ownerUid == request.auth.uid;
+    }
+
     function validQr(storeId, token, tableNo) {
       return token is string
         && tableNo is string
@@ -40,13 +46,16 @@ service cloud.firestore {
 
       match /menus/{menuId} {
         allow read: if true;
-        allow create, update, delete: if ownsStore(storeId);
+        allow create: if ownsStore(storeId) || ownsStoreAfter(storeId);
+        allow update, delete: if ownsStore(storeId);
       }
 
       match /qrSessions/{token} {
         allow get: if ownsStore(storeId)
           || (resource.data.active == true && resource.data.expiresAt > request.time);
-        allow list, create, update, delete: if ownsStore(storeId);
+        allow list: if ownsStore(storeId);
+        allow create: if ownsStore(storeId) || ownsStoreAfter(storeId);
+        allow update, delete: if ownsStore(storeId);
       }
 
       match /orders/{orderId} {

@@ -23,6 +23,8 @@ admin.blossom0948.cloud
 
 Firebase Console에서 `Firestore Database > Rules`로 이동한 뒤, 저장소의 [firestore.rules](firestore.rules) 내용을 붙여넣고 게시합니다.
 
+중요: 붙여넣기만 하면 적용되지 않습니다. 화면 위쪽의 `게시` 또는 `Publish` 버튼을 눌러야 실제 사이트에 반영됩니다.
+
 이 규칙은 다음을 막습니다.
 
 - 로그인하지 않은 사용자의 메뉴 수정
