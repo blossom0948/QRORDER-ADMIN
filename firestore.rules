@@ -32,7 +32,8 @@ service cloud.firestore {
         && exists(qrPath(storeId, token))
         && get(qrPath(storeId, token)).data.active == true
         && get(qrPath(storeId, token)).data.tableNo == tableNo
-        && get(qrPath(storeId, token)).data.expiresAt > request.time;
+        && (!("expiresAt" in get(qrPath(storeId, token)).data)
+          || get(qrPath(storeId, token)).data.expiresAt > request.time);
     }
 
     match /stores/{storeId} {
@@ -52,7 +53,8 @@ service cloud.firestore {
 
       match /qrSessions/{token} {
         allow get: if ownsStore(storeId)
-          || (resource.data.active == true && resource.data.expiresAt > request.time);
+          || (resource.data.active == true
+            && (!("expiresAt" in resource.data) || resource.data.expiresAt > request.time));
         allow list: if ownsStore(storeId);
         allow create: if ownsStore(storeId) || ownsStoreAfter(storeId);
         allow update, delete: if ownsStore(storeId);

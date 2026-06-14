@@ -72,9 +72,12 @@
         </form>
 
         <div id="storeTools" class="store-tools" hidden>
-          <div>
-            <strong>테이블 QR 링크</strong>
-            <span>QR 자동 생성 버튼을 누르면 테이블별 손님 주문 QR이 만들어집니다.</span>
+          <div class="qr-control-head">
+            <div>
+              <strong>테이블 QR</strong>
+              <span id="qrSummaryText">QR을 만들면 사장님 계정에 저장되고 다시 로그인해도 그대로 사용할 수 있습니다.</span>
+            </div>
+            <button id="openQrModal" class="button secondary" type="button">QR 보기</button>
           </div>
           <form id="qrGeneratorForm" class="qr-generator-form">
             <label>
@@ -82,10 +85,26 @@
               <input name="qrTableCount" type="number" min="1" max="60" value="10" />
             </label>
             <button class="button primary" type="submit">QR 자동 생성</button>
-            <button id="printAllQr" class="button secondary" type="button">전체 QR 인쇄</button>
           </form>
+          <fieldset class="qr-design-picker" aria-label="QR 디자인 선택">
+            <legend>QR 디자인</legend>
+            <label class="qr-design-option active" data-qr-design-card="sunset">
+              <input type="radio" name="qrDesign" value="sunset" checked />
+              <span class="mini-qr-card sunset"><b>01</b><em>메뉴주문 QR</em><i></i></span>
+              <strong>따뜻한 오렌지</strong>
+            </label>
+            <label class="qr-design-option" data-qr-design-card="clean">
+              <input type="radio" name="qrDesign" value="clean" />
+              <span class="mini-qr-card clean"><b>01</b><em>테이블 주문</em><i></i></span>
+              <strong>깔끔한 흰색</strong>
+            </label>
+            <label class="qr-design-option" data-qr-design-card="night">
+              <input type="radio" name="qrDesign" value="night" />
+              <span class="mini-qr-card night"><b>01</b><em>QR ORDER</em><i></i></span>
+              <strong>진한 포인트</strong>
+            </label>
+          </fieldset>
           <small id="qrGeneratorStatus" class="qr-generator-status">매장 테이블 수만큼 QR을 생성하고, 기존 QR은 유지합니다.</small>
-          <div id="qrLinks" class="qr-links"></div>
         </div>
       </section>
 
@@ -140,6 +159,23 @@
       </details>
     </main>
 
-    <script type="module" src="app.js?v=20260614-login-fix"></script>
+    <section id="qrModal" class="qr-modal" hidden aria-modal="true" aria-labelledby="qrModalTitle">
+      <button class="qr-modal-backdrop" type="button" data-close-qr-modal aria-label="QR 보기 닫기"></button>
+      <div class="qr-modal-panel">
+        <div class="qr-modal-head">
+          <div>
+            <p>인쇄해서 테이블에 붙이기</p>
+            <h2 id="qrModalTitle">테이블 QR</h2>
+          </div>
+          <div class="qr-modal-actions">
+            <button id="printAllQr" class="button primary" type="button">전체 인쇄</button>
+            <button class="button ghost" type="button" data-close-qr-modal>닫기</button>
+          </div>
+        </div>
+        <div id="qrLinks" class="qr-links" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <script type="module" src="app.js?v=20260614-qr-modal"></script>
   </body>
 </html>
