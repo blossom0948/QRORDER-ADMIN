@@ -3,13 +3,16 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>사장님 주문 관리</title>
+    <title>오더온 사장님</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body data-page="admin">
     <section id="loginGate" class="admin-login-gate" aria-labelledby="loginGateTitle">
       <div class="login-card">
-        <p>QRORDER Admin</p>
+        <div class="brand-lockup">
+          <span class="brand-mark" aria-hidden="true"><span></span></span>
+          <p>오더온</p>
+        </div>
         <h1 id="loginGateTitle">매장 운영을 시작하세요</h1>
         <span>Google 계정으로 로그인하면 매장 생성, 메뉴 관리, 주문 확인 화면이 열립니다.</span>
         <button id="googleLogin" class="button primary google-login" type="button">Google로 시작하기</button>
@@ -19,10 +22,20 @@
     </section>
 
     <header id="adminHeader" class="admin-header" hidden>
-      <div>
-        <p>사장님 사이트</p>
-        <h1>운영 대시보드</h1>
+      <div class="brand-heading">
+        <span class="brand-mark" aria-hidden="true"><span></span></span>
+        <div>
+          <p>오더온 사장님</p>
+          <h1>운영 대시보드</h1>
+        </div>
       </div>
+      <nav class="admin-top-nav" aria-label="운영 메뉴">
+        <button class="active" type="button" data-admin-jump="orderBoardSection">주문</button>
+        <button type="button" data-admin-jump="storeTools">QR</button>
+        <button type="button" data-admin-jump="todayHistorySection">내역</button>
+        <button type="button" data-admin-jump="soldoutQuickSection">품절</button>
+        <button type="button" data-admin-jump="menuManagePanel">메뉴</button>
+      </nav>
       <div class="admin-header-actions">
         <button id="seedOrder" class="button secondary" type="button">테스트 주문</button>
         <button id="toggleSound" class="button ghost" type="button" aria-pressed="false">딩동 알림 켜기</button>
@@ -30,7 +43,7 @@
     </header>
 
     <main id="adminDashboard" class="admin-shell" hidden>
-      <section class="order-board-section" aria-labelledby="ordersTitle">
+      <section id="orderBoardSection" class="order-board-section" aria-labelledby="ordersTitle">
         <div class="section-heading">
           <p>실시간 주문 확인</p>
           <h2 id="ordersTitle">주문 보드</h2>
@@ -71,10 +84,17 @@
           <button class="button primary" type="submit">매장 만들기</button>
         </form>
 
-        <div id="storeTools" class="store-tools qr-tools" hidden>
+      </section>
+
+      <section id="storeTools" class="qr-tools-panel" hidden aria-labelledby="qrToolsTitle">
+        <div class="section-heading">
+          <p>테이블에 붙일 주문 카드</p>
+          <h2 id="qrToolsTitle">QR 관리</h2>
+        </div>
+        <div class="store-tools qr-tools">
           <div class="qr-tool-card qr-create-card">
             <div>
-              <strong>1. QR 만들기</strong>
+              <strong>QR 만들기</strong>
               <span id="qrSummaryText">테이블 수를 입력하고 한 번만 만들면 계속 사용할 수 있습니다.</span>
             </div>
             <form id="qrGeneratorForm" class="qr-generator-form">
@@ -89,7 +109,7 @@
           <div class="qr-tool-card qr-print-card">
             <div class="qr-print-head">
               <div>
-                <strong>2. QR 인쇄하기</strong>
+                <strong>QR 인쇄하기</strong>
                 <span>디자인을 고르고 인쇄하면 바로 테이블에 붙일 수 있습니다.</span>
               </div>
               <button id="openQrModal" class="button secondary" type="button">인쇄 화면 열기</button>
@@ -98,7 +118,7 @@
               <legend>QR 디자인</legend>
               <label class="qr-design-option active" data-qr-design-card="signature">
                 <input type="radio" name="qrDesign" value="signature" checked />
-                <span class="mini-qr-card signature"><b>QRORDER</b><em>메뉴주문</em><i></i></span>
+                <span class="mini-qr-card signature"><b>ORDERON</b><em>메뉴주문</em><i></i></span>
                 <strong>시그니처 코랄</strong>
               </label>
               <label class="qr-design-option" data-qr-design-card="ticket">
@@ -116,7 +136,24 @@
         </div>
       </section>
 
-      <details class="menu-manage-panel">
+      <section id="todayHistorySection" class="today-history-panel" aria-labelledby="todayHistoryTitle">
+        <div class="section-heading">
+          <p>오늘 들어온 주문</p>
+          <h2 id="todayHistoryTitle">오늘 주문 내역</h2>
+        </div>
+        <div id="todayHistoryStats" class="today-stats"></div>
+        <div id="todayHistory" class="today-history-list"></div>
+      </section>
+
+      <section id="soldoutQuickSection" class="soldout-panel" aria-labelledby="soldoutQuickTitle">
+        <div class="section-heading">
+          <p>바쁠 때 바로 누르기</p>
+          <h2 id="soldoutQuickTitle">품절 빠른 변경</h2>
+        </div>
+        <div id="soldoutQuickList" class="soldout-quick-list"></div>
+      </section>
+
+      <details id="menuManagePanel" class="menu-manage-panel">
         <summary>
           <div class="section-heading">
             <p>가격·품절·사진</p>
@@ -184,6 +221,6 @@
       </div>
     </section>
 
-    <script type="module" src="app.js?v=20260614-order-qr-polish"></script>
+    <script type="module" src="app.js?v=20260614-brand-nav"></script>
   </body>
 </html>
