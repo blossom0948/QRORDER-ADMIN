@@ -14,7 +14,7 @@
         <span>Google 계정으로 로그인하면 매장 생성, 메뉴 관리, 주문 확인 화면이 열립니다.</span>
         <button id="googleLogin" class="button primary google-login" type="button">Google로 시작하기</button>
         <button id="googleRedirectLogin" class="button secondary google-login" type="button">로그인이 안 되면 여기를 누르세요</button>
-        <small id="loginStatus">Firebase Authentication에서 Google 로그인을 켠 뒤 사용할 수 있습니다.</small>
+        <small id="loginStatus">Google 계정으로 로그인하면 매장 관리 화면이 열립니다.</small>
       </div>
     </section>
 
@@ -46,7 +46,7 @@
         <div id="orderBoard" class="kanban" aria-live="polite"></div>
       </section>
 
-      <section class="firebase-admin-panel" aria-label="Firebase 매장 연결">
+      <section class="firebase-admin-panel" aria-label="매장 관리">
         <div class="firebase-panel-head">
           <div>
             <p>매장 연결</p>
@@ -71,40 +71,48 @@
           <button class="button primary" type="submit">매장 만들기</button>
         </form>
 
-        <div id="storeTools" class="store-tools" hidden>
-          <div class="qr-control-head">
+        <div id="storeTools" class="store-tools qr-tools" hidden>
+          <div class="qr-tool-card qr-create-card">
             <div>
-              <strong>테이블 QR</strong>
-              <span id="qrSummaryText">QR을 만들면 사장님 계정에 저장되고 다시 로그인해도 그대로 사용할 수 있습니다.</span>
+              <strong>1. QR 만들기</strong>
+              <span id="qrSummaryText">테이블 수를 입력하고 한 번만 만들면 계속 사용할 수 있습니다.</span>
             </div>
-            <button id="openQrModal" class="button secondary" type="button">QR 보기</button>
+            <form id="qrGeneratorForm" class="qr-generator-form">
+              <label>
+                테이블 수
+                <input name="qrTableCount" type="number" min="1" max="60" value="10" />
+              </label>
+              <button class="button primary" type="submit">QR 만들기</button>
+            </form>
+            <small id="qrGeneratorStatus" class="qr-generator-status">기존 QR은 바뀌지 않습니다.</small>
           </div>
-          <form id="qrGeneratorForm" class="qr-generator-form">
-            <label>
-              테이블 수
-              <input name="qrTableCount" type="number" min="1" max="60" value="10" />
-            </label>
-            <button class="button primary" type="submit">QR 자동 생성</button>
-          </form>
-          <fieldset class="qr-design-picker" aria-label="QR 디자인 선택">
-            <legend>QR 디자인</legend>
-            <label class="qr-design-option active" data-qr-design-card="sunset">
-              <input type="radio" name="qrDesign" value="sunset" checked />
-              <span class="mini-qr-card sunset"><b>01</b><em>메뉴주문 QR</em><i></i></span>
-              <strong>따뜻한 오렌지</strong>
-            </label>
-            <label class="qr-design-option" data-qr-design-card="clean">
-              <input type="radio" name="qrDesign" value="clean" />
-              <span class="mini-qr-card clean"><b>01</b><em>테이블 주문</em><i></i></span>
-              <strong>깔끔한 흰색</strong>
-            </label>
-            <label class="qr-design-option" data-qr-design-card="night">
-              <input type="radio" name="qrDesign" value="night" />
-              <span class="mini-qr-card night"><b>01</b><em>QR ORDER</em><i></i></span>
-              <strong>진한 포인트</strong>
-            </label>
-          </fieldset>
-          <small id="qrGeneratorStatus" class="qr-generator-status">매장 테이블 수만큼 QR을 생성하고, 기존 QR은 유지합니다.</small>
+          <div class="qr-tool-card qr-print-card">
+            <div class="qr-print-head">
+              <div>
+                <strong>2. QR 인쇄하기</strong>
+                <span>디자인을 고르고 인쇄하면 바로 테이블에 붙일 수 있습니다.</span>
+              </div>
+              <button id="openQrModal" class="button secondary" type="button">인쇄 화면 열기</button>
+            </div>
+            <fieldset class="qr-design-picker" aria-label="QR 디자인 선택">
+              <legend>QR 디자인</legend>
+              <label class="qr-design-option active" data-qr-design-card="signature">
+                <input type="radio" name="qrDesign" value="signature" checked />
+                <span class="mini-qr-card signature"><b>QRORDER</b><em>메뉴주문</em><i></i></span>
+                <strong>시그니처 코랄</strong>
+              </label>
+              <label class="qr-design-option" data-qr-design-card="ticket">
+                <input type="radio" name="qrDesign" value="ticket" />
+                <span class="mini-qr-card ticket"><b>TABLE</b><em>주문표</em><i></i></span>
+                <strong>매장 티켓</strong>
+              </label>
+              <label class="qr-design-option" data-qr-design-card="stamp">
+                <input type="radio" name="qrDesign" value="stamp" />
+                <span class="mini-qr-card stamp"><b>SCAN</b><em>바로주문</em><i></i></span>
+                <strong>스탬프 카드</strong>
+              </label>
+            </fieldset>
+          </div>
         </div>
       </section>
 
@@ -176,6 +184,6 @@
       </div>
     </section>
 
-    <script type="module" src="app.js?v=20260614-qr-modal"></script>
+    <script type="module" src="app.js?v=20260614-order-qr-polish"></script>
   </body>
 </html>
