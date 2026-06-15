@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>오더온 사장님</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body data-page="admin">
@@ -30,11 +31,9 @@
         </div>
       </div>
       <nav class="admin-top-nav" aria-label="운영 메뉴">
-        <button class="active" type="button" data-admin-jump="orderBoardSection">주문</button>
-        <button type="button" data-admin-jump="storeTools">QR</button>
-        <button type="button" data-admin-jump="todayHistorySection">내역</button>
-        <button type="button" data-admin-jump="soldoutQuickSection">품절</button>
-        <button type="button" data-admin-jump="menuManagePanel">메뉴</button>
+        <button class="active" type="button" data-admin-view="orders">주문관리</button>
+        <button type="button" data-admin-view="qr">QR 관리</button>
+        <button type="button" data-admin-view="menu">메뉴 관리</button>
       </nav>
       <div class="admin-header-actions">
         <button id="seedOrder" class="button secondary" type="button">테스트 주문</button>
@@ -43,10 +42,10 @@
     </header>
 
     <main id="adminDashboard" class="admin-shell" hidden>
-      <section id="orderBoardSection" class="order-board-section" aria-labelledby="ordersTitle">
+      <section id="orderView" class="admin-view active" data-admin-panel="orders" aria-labelledby="ordersTitle">
         <div class="section-heading">
           <p>실시간 주문 확인</p>
-          <h2 id="ordersTitle">주문 보드</h2>
+          <h2 id="ordersTitle">주문관리</h2>
         </div>
         <div class="order-toolbar">
           <div class="filter-chips" role="tablist" aria-label="주문 필터">
@@ -57,9 +56,18 @@
           <span id="boardHint">대기 주문이 들어오면 딩동 알림과 함께 이 보드에 표시됩니다.</span>
         </div>
         <div id="orderBoard" class="kanban" aria-live="polite"></div>
+
+        <div id="todayHistorySection" class="today-history-panel" aria-labelledby="todayHistoryTitle">
+          <div class="section-heading">
+            <p>오늘 들어온 주문</p>
+            <h2 id="todayHistoryTitle">오늘 주문 내역</h2>
+          </div>
+          <div id="todayHistoryStats" class="today-stats"></div>
+          <div id="todayHistory" class="today-history-list"></div>
+        </div>
       </section>
 
-      <section class="firebase-admin-panel" aria-label="매장 관리">
+      <section id="storeSetupPanel" class="firebase-admin-panel" aria-label="매장 관리">
         <div class="firebase-panel-head">
           <div>
             <p>매장 연결</p>
@@ -86,7 +94,7 @@
 
       </section>
 
-      <section id="storeTools" class="qr-tools-panel" hidden aria-labelledby="qrToolsTitle">
+      <section id="storeTools" class="admin-view qr-tools-panel" data-admin-panel="qr" hidden aria-labelledby="qrToolsTitle">
         <div class="section-heading">
           <p>테이블에 붙일 주문 카드</p>
           <h2 id="qrToolsTitle">QR 관리</h2>
@@ -136,24 +144,16 @@
         </div>
       </section>
 
-      <section id="todayHistorySection" class="today-history-panel" aria-labelledby="todayHistoryTitle">
-        <div class="section-heading">
-          <p>오늘 들어온 주문</p>
-          <h2 id="todayHistoryTitle">오늘 주문 내역</h2>
-        </div>
-        <div id="todayHistoryStats" class="today-stats"></div>
-        <div id="todayHistory" class="today-history-list"></div>
-      </section>
+      <section id="menuView" class="admin-view menu-view" data-admin-panel="menu" hidden aria-labelledby="menuManageTitle">
+        <section id="soldoutQuickSection" class="soldout-panel" aria-labelledby="soldoutQuickTitle">
+          <div class="section-heading">
+            <p>바쁠 때 바로 누르기</p>
+            <h2 id="soldoutQuickTitle">품절 빠른 변경</h2>
+          </div>
+          <div id="soldoutQuickList" class="soldout-quick-list"></div>
+        </section>
 
-      <section id="soldoutQuickSection" class="soldout-panel" aria-labelledby="soldoutQuickTitle">
-        <div class="section-heading">
-          <p>바쁠 때 바로 누르기</p>
-          <h2 id="soldoutQuickTitle">품절 빠른 변경</h2>
-        </div>
-        <div id="soldoutQuickList" class="soldout-quick-list"></div>
-      </section>
-
-      <details id="menuManagePanel" class="menu-manage-panel">
+      <details id="menuManagePanel" class="menu-manage-panel" open>
         <summary>
           <div class="section-heading">
             <p>가격·품절·사진</p>
@@ -202,6 +202,7 @@
         </form>
         <div id="menuManager" class="menu-manager"></div>
       </details>
+      </section>
     </main>
 
     <section id="qrModal" class="qr-modal" hidden aria-modal="true" aria-labelledby="qrModalTitle">
@@ -221,6 +222,6 @@
       </div>
     </section>
 
-    <script type="module" src="app.js?v=20260614-brand-nav"></script>
+    <script type="module" src="app.js?v=20260615-admin-views"></script>
   </body>
 </html>
